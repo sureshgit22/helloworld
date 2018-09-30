@@ -1,0 +1,107 @@
+EAR - Enterprise archive (it's incluse all the bussiness login deatils realated dev' files)
+
+URI - 
+
+Vignette - Static content page save
+
+Application server,web server, Database servre ?
+
+SSO login, site minder - Verify the auth'
+
+jsession ID
+
+GDPR
+
+CAD - Java 
+
+Heavy mirror
+
+cloudbee
+
+cloudify
+
+automation & orchestration  - workflow - who has to to do and when
+
+Deployment tools:
+
+maven - 
+
+ant - 
+
+gradle -
+
+
+Web server - it will convert the web page and provide
+
+web application - it will do all the activity
+
+github
+
+Set Environment variable:
+
+%ANT_HOME%\bin :  D:\soft\apache-ant-1.10.5
+
+%MVN_HOME%\bin : D:\soft\apache-maven-3.5.4
+
+%GRADLE_HOME%\bin : D:\soft\gradle-4.9
+
+%JAVA_HOME%\bin : C:\Program Files\Java\jdk1.8.0_181
+
+befor installation we need to verfiy, if Java path set correctly
+
+Tomcat 7 installation
+
+	
+Command reference:
+
+https://github.com/bvijaycom/commands/blob/master/Devops%20Commands%20quick%20reference.txt
+
+
+Pipeline - workflow
+
+Configure Global Security - Authorization - Matrix-based security
+
+JNLP 
+
+===============================================================================================
+30-9-2018
+
+Artifactory - Global repositiry (executable archive repository)
+
+Example : http://del-repos.extreme-ix.org/epel/7/x86_64/Packages/
+
+pulp(alternet redaht satalite)
+
+-Xms512m - Min heap size
+-Xmx2g - Max heap size
+
++UseG1GC - Garbage collection
+
+slack - finla link
+
+using jenkins we have build and attached the application
+
+192.168.237.129 server1
+192.168.237.130 apserver
+
+192.168.237.130 apserver.cnl.com apserver
+192.168.237.129 server1.cnl.com server1
+
+
+hostnamectl set-hostname <system name>
+
+user { 'user2':
+  ensure           => 'present',
+
+}
+
+
+
+file { '/var/tmp/sample.txt':
+  ensure   => 'file',
+  content  => '376dc28fb6245179f247f423221f0595',
+}
+
+netadmin_123 / bvijaycom
+
+https://github.com/bvijaycom/commands/blob/master/puppet-commands
