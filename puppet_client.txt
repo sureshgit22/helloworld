@@ -1,0 +1,290 @@
+[root@puttyclient ~]# cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+10.160.0.3 puttyclient.asia-south1-c.c.evocative-lodge-218006.internal puttyclient  # Added by Google
+10.160.0.2 artifactory.asia-south1-c.c.evocative-lodge-218006.internal artifactory
+169.254.169.254 metadata.google.internal  # Added by Google
+[root@puttyclient ~]# 
+
+[root@puttyclient ~]# yum install epel-release
+Loaded plugins: fastestmirror
+Determining fastest mirrors
+epel/x86_64/metalink                                                                        |  16 kB  00:00:00     
+ * base: ftp.iitm.ac.in
+ * epel: mirrors.cat.pdx.edu
+ * extras: mirror.upsi.edu.my
+ * updates: mirror.xtom.com.hk
+base                                                                                        | 3.6 kB  00:00:00     
+epel                                                                                        | 3.2 kB  00:00:00     
+extras                                                                                      | 3.4 kB  00:00:00     
+google-cloud-compute/signature                                                              |  454 B  00:00:00     
+google-cloud-compute/signature                                                              | 1.8 kB  00:00:00 !!! 
+google-cloud-sdk/signature                                                                  |  454 B  00:00:00     
+google-cloud-sdk/signature                                                                  | 1.4 kB  00:00:00 !!! 
+updates                                                                                     | 3.4 kB  00:00:00     
+(1/10): base/7/x86_64/group_gz                                                              | 166 kB  00:00:00     
+(2/10): epel/x86_64/group_gz                                                                |  88 kB  00:00:01     
+(3/10): epel/x86_64/updateinfo                                                              | 947 kB  00:00:01     
+(4/10): base/7/x86_64/primary_db                                                            | 5.9 MB  00:00:02     
+(5/10): extras/7/x86_64/primary_db                                                          | 187 kB  00:00:00     
+(6/10): google-cloud-compute/updateinfo                                                     | 1.1 kB  00:00:00     
+(7/10): google-cloud-compute/primary                                                        | 3.7 kB  00:00:00     
+(8/10): epel/x86_64/primary                                                                 | 3.6 MB  00:00:00     
+(9/10): google-cloud-sdk/primary                                                            |  50 kB  00:00:00     
+(10/10): updates/7/x86_64/primary_db                                                        | 6.0 MB  00:00:01     
+epel                                                                                                   12694/12694
+google-cloud-compute                                                                                         10/10
+google-cloud-sdk                                                                                           317/317
+Package epel-release-7-11.noarch already installed and latest version
+Nothing to do
+[root@puttyclient ~]# yum install puppet
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: ftp.iitm.ac.in
+ * epel: mirrors.cat.pdx.edu
+ * extras: mirror.upsi.edu.my
+ * updates: mirror.xtom.com.hk
+Resolving Dependencies
+--> Running transaction check
+---> Package puppet.noarch 0:3.6.2-3.el7 will be installed
+--> Processing Dependency: hiera >= 1.0.0 for package: puppet-3.6.2-3.el7.noarch
+--> Processing Dependency: facter >= 1.6.6 for package: puppet-3.6.2-3.el7.noarch
+--> Processing Dependency: rubygem(rgen) for package: puppet-3.6.2-3.el7.noarch
+--> Processing Dependency: ruby(shadow) for package: puppet-3.6.2-3.el7.noarch
+--> Processing Dependency: ruby(selinux) for package: puppet-3.6.2-3.el7.noarch
+--> Processing Dependency: ruby(release) for package: puppet-3.6.2-3.el7.noarch
+--> Processing Dependency: ruby(augeas) for package: puppet-3.6.2-3.el7.noarch
+--> Processing Dependency: ruby for package: puppet-3.6.2-3.el7.noarch
+--> Processing Dependency: /usr/bin/ruby for package: puppet-3.6.2-3.el7.noarch
+--> Running transaction check
+---> Package facter.x86_64 0:2.4.1-1.el7 will be installed
+--> Processing Dependency: pciutils for package: facter-2.4.1-1.el7.x86_64
+---> Package hiera.noarch 1:1.3.4-5.el7 will be installed
+---> Package libselinux-ruby.x86_64 0:2.5-12.el7 will be installed
+---> Package ruby.x86_64 0:2.0.0.648-33.el7_4 will be installed
+--> Processing Dependency: rubygem(bigdecimal) >= 1.2.0 for package: ruby-2.0.0.648-33.el7_4.x86_64
+--> Processing Dependency: ruby(rubygems) >= 2.0.14.1 for package: ruby-2.0.0.648-33.el7_4.x86_64
+---> Package ruby-augeas.x86_64 0:0.5.0-1.el7 will be installed
+--> Processing Dependency: augeas-libs >= 1.0.0 for package: ruby-augeas-0.5.0-1.el7.x86_64
+--> Processing Dependency: libaugeas.so.0(AUGEAS_0.8.0)(64bit) for package: ruby-augeas-0.5.0-1.el7.x86_64
+--> Processing Dependency: libaugeas.so.0(AUGEAS_0.16.0)(64bit) for package: ruby-augeas-0.5.0-1.el7.x86_64
+--> Processing Dependency: libaugeas.so.0(AUGEAS_0.14.0)(64bit) for package: ruby-augeas-0.5.0-1.el7.x86_64
+--> Processing Dependency: libaugeas.so.0(AUGEAS_0.12.0)(64bit) for package: ruby-augeas-0.5.0-1.el7.x86_64
+--> Processing Dependency: libaugeas.so.0(AUGEAS_0.11.0)(64bit) for package: ruby-augeas-0.5.0-1.el7.x86_64
+--> Processing Dependency: libaugeas.so.0(AUGEAS_0.10.0)(64bit) for package: ruby-augeas-0.5.0-1.el7.x86_64
+--> Processing Dependency: libaugeas.so.0(AUGEAS_0.1.0)(64bit) for package: ruby-augeas-0.5.0-1.el7.x86_64
+--> Processing Dependency: libaugeas.so.0()(64bit) for package: ruby-augeas-0.5.0-1.el7.x86_64
+---> Package ruby-libs.x86_64 0:2.0.0.648-33.el7_4 will be installed
+---> Package ruby-shadow.x86_64 0:1.4.1-23.el7 will be installed
+---> Package rubygem-rgen.noarch 0:0.6.6-2.el7 will be installed
+--> Running transaction check
+---> Package augeas-libs.x86_64 0:1.4.0-5.el7_5.1 will be installed
+---> Package pciutils.x86_64 0:3.5.1-3.el7 will be installed
+---> Package rubygem-bigdecimal.x86_64 0:1.2.0-33.el7_4 will be installed
+---> Package rubygems.noarch 0:2.0.14.1-33.el7_4 will be installed
+--> Processing Dependency: rubygem(rdoc) >= 4.0.0 for package: rubygems-2.0.14.1-33.el7_4.noarch
+--> Processing Dependency: rubygem(psych) >= 2.0.0 for package: rubygems-2.0.14.1-33.el7_4.noarch
+--> Processing Dependency: rubygem(io-console) >= 0.4.2 for package: rubygems-2.0.14.1-33.el7_4.noarch
+--> Running transaction check
+---> Package rubygem-io-console.x86_64 0:0.4.2-33.el7_4 will be installed
+---> Package rubygem-psych.x86_64 0:2.0.0-33.el7_4 will be installed
+--> Processing Dependency: libyaml-0.so.2()(64bit) for package: rubygem-psych-2.0.0-33.el7_4.x86_64
+---> Package rubygem-rdoc.noarch 0:4.0.0-33.el7_4 will be installed
+--> Processing Dependency: ruby(irb) = 2.0.0.648 for package: rubygem-rdoc-4.0.0-33.el7_4.noarch
+--> Processing Dependency: rubygem(json) >= 1.7.7 for package: rubygem-rdoc-4.0.0-33.el7_4.noarch
+--> Running transaction check
+---> Package libyaml.x86_64 0:0.1.4-11.el7_0 will be installed
+---> Package ruby-irb.noarch 0:2.0.0.648-33.el7_4 will be installed
+---> Package rubygem-json.x86_64 0:1.7.7-33.el7_4 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+===================================================================================================================
+ Package                         Arch                Version                            Repository            Size
+===================================================================================================================
+Installing:
+ puppet                          noarch              3.6.2-3.el7                        epel                 1.2 M
+Installing for dependencies:
+ augeas-libs                     x86_64              1.4.0-5.el7_5.1                    updates              355 k
+ facter                          x86_64              2.4.1-1.el7                        epel                 101 k
+ hiera                           noarch              1:1.3.4-5.el7                      epel                  25 k
+ libselinux-ruby                 x86_64              2.5-12.el7                         base                 121 k
+ libyaml                         x86_64              0.1.4-11.el7_0                     base                  55 k
+ pciutils                        x86_64              3.5.1-3.el7                        base                  93 k
+ ruby                            x86_64              2.0.0.648-33.el7_4                 base                  71 k
+ ruby-augeas                     x86_64              0.5.0-1.el7                        epel                  23 k
+ ruby-irb                        noarch              2.0.0.648-33.el7_4                 base                  92 k
+ ruby-libs                       x86_64              2.0.0.648-33.el7_4                 base                 2.8 M
+ ruby-shadow                     x86_64              1.4.1-23.el7                       epel                  14 k
+ rubygem-bigdecimal              x86_64              1.2.0-33.el7_4                     base                  83 k
+ rubygem-io-console              x86_64              0.4.2-33.el7_4                     base                  54 k
+ rubygem-json                    x86_64              1.7.7-33.el7_4                     base                  79 k
+ rubygem-psych                   x86_64              2.0.0-33.el7_4                     base                  82 k
+ rubygem-rdoc                    noarch              4.0.0-33.el7_4                     base                 322 k
+ rubygem-rgen                    noarch              0.6.6-2.el7                        epel                  84 k
+ rubygems                        noarch              2.0.14.1-33.el7_4                  base                 219 k
+
+ Transaction Summary
+===================================================================================================================
+Install  1 Package (+18 Dependent packages)
+Total download size: 5.9 M
+Installed size: 19 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/19): augeas-libs-1.4.0-5.el7_5.1.x86_64.rpm                                              | 355 kB  00:00:00     
+(2/19): facter-2.4.1-1.el7.x86_64.rpm                                                       | 101 kB  00:00:01     
+(3/19): hiera-1.3.4-5.el7.noarch.rpm                                                        |  25 kB  00:00:00     
+(4/19): pciutils-3.5.1-3.el7.x86_64.rpm                                                     |  93 kB  00:00:00     
+(5/19): libyaml-0.1.4-11.el7_0.x86_64.rpm                                                   |  55 kB  00:00:01     
+(6/19): ruby-2.0.0.648-33.el7_4.x86_64.rpm                                                  |  71 kB  00:00:01     
+(7/19): puppet-3.6.2-3.el7.noarch.rpm                                                       | 1.2 MB  00:00:01     
+(8/19): libselinux-ruby-2.5-12.el7.x86_64.rpm                                               | 121 kB  00:00:01     
+(9/19): ruby-augeas-0.5.0-1.el7.x86_64.rpm                                                  |  23 kB  00:00:00     
+(10/19): ruby-shadow-1.4.1-23.el7.x86_64.rpm                                                |  14 kB  00:00:00     
+(11/19): rubygem-io-console-0.4.2-33.el7_4.x86_64.rpm                                       |  54 kB  00:00:00     
+(12/19): ruby-irb-2.0.0.648-33.el7_4.noarch.rpm                                             |  92 kB  00:00:00     
+(13/19): rubygem-psych-2.0.0-33.el7_4.x86_64.rpm                                            |  82 kB  00:00:00     
+(14/19): rubygem-bigdecimal-1.2.0-33.el7_4.x86_64.rpm                                       |  83 kB  00:00:00     
+(15/19): rubygem-rgen-0.6.6-2.el7.noarch.rpm                                                |  84 kB  00:00:00     
+(16/19): ruby-libs-2.0.0.648-33.el7_4.x86_64.rpm                                            | 2.8 MB  00:00:01     
+(17/19): rubygem-rdoc-4.0.0-33.el7_4.noarch.rpm                                             | 322 kB  00:00:00     
+(18/19): rubygems-2.0.14.1-33.el7_4.noarch.rpm                                              | 219 kB  00:00:00     
+(19/19): rubygem-json-1.7.7-33.el7_4.x86_64.rpm                                             |  79 kB  00:00:01     
+-------------------------------------------------------------------------------------------------------------------
+Total                                                                              1.2 MB/s | 5.9 MB  00:00:04     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : ruby-libs-2.0.0.648-33.el7_4.x86_64                                                            1/19 
+  Installing : 1:hiera-1.3.4-5.el7.noarch                                                                     2/19 
+  Installing : ruby-shadow-1.4.1-23.el7.x86_64                                                                3/19 
+  Installing : pciutils-3.5.1-3.el7.x86_64                                                                    4/19 
+  Installing : libyaml-0.1.4-11.el7_0.x86_64                                                                  5/19 
+  Installing : rubygem-bigdecimal-1.2.0-33.el7_4.x86_64                                                       6/19 
+  Installing : rubygem-json-1.7.7-33.el7_4.x86_64                                                             7/19 
+  Installing : rubygem-io-console-0.4.2-33.el7_4.x86_64                                                       8/19 
+  Installing : ruby-2.0.0.648-33.el7_4.x86_64                                                                 9/19 
+  Installing : ruby-irb-2.0.0.648-33.el7_4.noarch                                                            10/19 
+  Installing : rubygem-psych-2.0.0-33.el7_4.x86_64                                                           11/19 
+  Installing : rubygems-2.0.14.1-33.el7_4.noarch                                                             12/19 
+  Installing : rubygem-rdoc-4.0.0-33.el7_4.noarch                                                            13/19 
+  Installing : rubygem-rgen-0.6.6-2.el7.noarch                                                               14/19 
+  Installing : facter-2.4.1-1.el7.x86_64                                                                     15/19 
+  Installing : augeas-libs-1.4.0-5.el7_5.1.x86_64                                                            16/19 
+  Installing : ruby-augeas-0.5.0-1.el7.x86_64                                                                17/19 
+  Installing : libselinux-ruby-2.5-12.el7.x86_64                                                             18/19 
+  Installing : puppet-3.6.2-3.el7.noarch                                                                     19/19 
+  Verifying  : libselinux-ruby-2.5-12.el7.x86_64                                                              1/19 
+  Verifying  : ruby-libs-2.0.0.648-33.el7_4.x86_64                                                            2/19 
+  Verifying  : 1:hiera-1.3.4-5.el7.noarch                                                                     3/19 
+  Verifying  : facter-2.4.1-1.el7.x86_64                                                                      4/19 
+  Verifying  : rubygem-bigdecimal-1.2.0-33.el7_4.x86_64                                                       5/19 
+  Verifying  : rubygem-json-1.7.7-33.el7_4.x86_64                                                             6/19 
+  Verifying  : augeas-libs-1.4.0-5.el7_5.1.x86_64                                                             7/19 
+  Verifying  : puppet-3.6.2-3.el7.noarch                                                                      8/19 
+  Verifying  : rubygem-io-console-0.4.2-33.el7_4.x86_64                                                       9/19 
+  Verifying  : ruby-2.0.0.648-33.el7_4.x86_64                                                                10/19 
+  Verifying  : ruby-shadow-1.4.1-23.el7.x86_64                                                               11/19 
+  Verifying  : rubygem-psych-2.0.0-33.el7_4.x86_64                                                           12/19 
+  Verifying  : libyaml-0.1.4-11.el7_0.x86_64                                                                 13/19 
+  Verifying  : pciutils-3.5.1-3.el7.x86_64                                                                   14/19 
+  Verifying  : rubygem-rdoc-4.0.0-33.el7_4.noarch                                                            15/19 
+  [main]
+  Verifying  : ruby-augeas-0.5.0-1.el7.x86_64                                                                16/19 
+  Verifying  : rubygems-2.0.14.1-33.el7_4.noarch                                                             17/19 
+  Verifying  : ruby-irb-2.0.0.648-33.el7_4.noarch                                                            18/19 
+  Verifying  : rubygem-rgen-0.6.6-2.el7.noarch                                                               19/19 
+Installed:
+  puppet.noarch 0:3.6.2-3.el7                                                                                      
+Dependency Installed:
+  augeas-libs.x86_64 0:1.4.0-5.el7_5.1                     facter.x86_64 0:2.4.1-1.el7                             
+  hiera.noarch 1:1.3.4-5.el7                               libselinux-ruby.x86_64 0:2.5-12.el7                     
+  libyaml.x86_64 0:0.1.4-11.el7_0                          pciutils.x86_64 0:3.5.1-3.el7                           
+  ruby.x86_64 0:2.0.0.648-33.el7_4                         ruby-augeas.x86_64 0:0.5.0-1.el7                        
+  ruby-irb.noarch 0:2.0.0.648-33.el7_4                     ruby-libs.x86_64 0:2.0.0.648-33.el7_4                   
+  ruby-shadow.x86_64 0:1.4.1-23.el7                        rubygem-bigdecimal.x86_64 0:1.2.0-33.el7_4              
+  rubygem-io-console.x86_64 0:0.4.2-33.el7_4               rubygem-json.x86_64 0:1.7.7-33.el7_4                    
+  rubygem-psych.x86_64 0:2.0.0-33.el7_4                    rubygem-rdoc.noarch 0:4.0.0-33.el7_4                    
+  rubygem-rgen.noarch 0:0.6.6-2.el7                        rubygems.noarch 0:2.0.14.1-33.el7_4                     
+Complete!
+[root@puttyclient ~]# systemctl restart puppet
+[root@puttyclient ~]# systemctl status puppet
+● puppet.service - Puppet agent
+   Loaded: loaded (/usr/lib/systemd/system/puppet.service; disabled; vendor preset: disabled)
+   Active: active (running) since Sun 2018-09-30 16:00:49 UTC; 7s ago
+ Main PID: 1724 (start-puppet-ag)
+   CGroup: /system.slice/puppet.service
+           ├─1724 /bin/sh /usr/bin/start-puppet-agent agent --no-daemonize
+           └─1725 /usr/bin/ruby /usr/bin/puppet agent --no-daemonize
+Sep 30 16:00:49 puttyclient systemd[1]: Started Puppet agent.
+Sep 30 16:00:49 puttyclient systemd[1]: Starting Puppet agent...
+Sep 30 16:00:51 puttyclient puppet-agent[1725]: Could not request certificate: getaddrinfo: Name or service ...nown
+Hint: Some lines were ellipsized, use -l to show in full.
+[root@puttyclient ~]# systemctl enable puppet
+Created symlink from /etc/systemd/system/multi-user.target.wants/puppet.service to /usr/lib/systemd/system/puppet.s
+ervice.
+[root@puttyclient ~]# systemctl stop firewalld
+[root@puttyclient ~]# systemctl disable firewalld
+Removed symlink /etc/systemd/system/multi-user.target.wants/firewalld.service.
+Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
+[root@puttyclient ~]# vim /etc/puppet/puppet.conf
+[root@puttyclient ~]# ping artifactory.asia-south1-c.c.evocative-lodge-218006.internal
+PING artifactory.asia-south1-c.c.evocative-lodge-218006.internal (10.160.0.2) 56(84) bytes of data.
+64 bytes from artifactory.asia-south1-c.c.evocative-lodge-218006.internal (10.160.0.2): icmp_seq=1 ttl=64 time=2.44
+ ms
+64 bytes from artifactory.asia-south1-c.c.evocative-lodge-218006.internal (10.160.0.2): icmp_seq=2 ttl=64 time=0.22
+8 ms
+64 bytes from artifactory.asia-south1-c.c.evocative-lodge-218006.internal (10.160.0.2): icmp_seq=3 ttl=64 time=0.30
+6 ms
+^C
+--- artifactory.asia-south1-c.c.evocative-lodge-218006.internal ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2001ms
+rtt min/avg/max/mdev = 0.228/0.992/2.442/1.025 ms
+[root@puttyclient ~]# puppet agent -t
+Info: Caching certificate for ca
+Info: csr_attributes file loading from /etc/puppet/csr_attributes.yaml
+Info: Creating a new SSL certificate request for puttyclient.asia-south1-c.c.evocative-lodge-218006.internal
+Info: Certificate Request fingerprint (SHA256): 51:70:77:59:D8:80:B5:10:FA:44:78:BC:A5:CE:4A:8A:62:CD:2F:5A:5F:16:1
+3:27:E6:55:DD:A2:69:DD:99:BA
+Info: Caching certificate for ca
+Exiting; no certificate found and waitforcert is disabled
+[root@puttyclient ~]# puppet agent -t
+Info: Caching certificate for puttyclient.asia-south1-c.c.evocative-lodge-218006.internal
+Info: Caching certificate_revocation_list for ca
+Info: Caching certificate for puttyclient.asia-south1-c.c.evocative-lodge-218006.internal
+Info: Retrieving pluginfacts
+Info: Retrieving plugin
+Info: Caching catalog for puttyclient.asia-south1-c.c.evocative-lodge-218006.internal
+Info: Applying configuration version '1538323474'
+Info: Creating state file /var/lib/puppet/state/state.yaml
+Notice: Finished catalog run in 0.01 seconds
+[root@puttyclient ~]# 
+
+
+[root@puttyclient ~]# puppet agent -t
+Info: Retrieving pluginfacts
+Info: Retrieving plugin
+Info: Caching catalog for puttyclient.asia-south1-c.c.evocative-lodge-218006.internal
+Error: Failed to apply catalog: Could not find dependency Package[httpd] for Service[httpd] at /etc/puppet/modules/runtest/manifests/init.pp:43
+[root@puttyclient ~]# puppet agent -t
+Info: Retrieving pluginfacts
+Info: Retrieving plugin
+Info: Caching catalog for puttyclient.asia-south1-c.c.evocative-lodge-218006.internal
+Error: Failed to apply catalog: Could not find dependency Package[httpd] for Service[httpd] at /etc/puppet/modules/runtest/manifests/init.pp:43
+
+
+[root@puttyclient ~]# puppet agent -t
+Info: Retrieving pluginfacts
+Info: Retrieving plugin
+Info: Caching catalog for puttyclient.asia-south1-c.c.evocative-lodge-218006.internal
+Warning: The package type's allow_virtual parameter will be changing its default value from false to true in a future release. If you do not want to allow virtual packages, please explicitly set allow_virtual to false.
+   (at /usr/share/ruby/vendor_ruby/puppet/type.rb:816:in `set_default')
+Info: Applying configuration version '1538327808'
+Notice: /Stage[main]/Runtest/User[ram]/ensure: created
+Notice: /Stage[main]/Runtest/File[/home/ram]/ensure: created
+Notice: /Stage[main]/Runtest/Package[httpd]/ensure: created
+Notice: Finished catalog run in 5.52 seconds
+[root@puttyclient ~]# 
+

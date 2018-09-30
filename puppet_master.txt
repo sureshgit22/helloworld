@@ -1,0 +1,213 @@
+10.160.0.2 artifactory.asia-south1-c.c.evocative-lodge-218006.internal artifactory
+10.160.0.3 puttyclient.asia-south1-c.c.evocative-lodge-218006.internal puttyclient
+
+  puppet-server.noarch 0:3.6.2-3.el7                                                                               
+Dependency Installed:
+  augeas-libs.x86_64 0:1.4.0-5.el7_5.1                     facter.x86_64 0:2.4.1-1.el7                             
+  hiera.noarch 1:1.3.4-5.el7                               libselinux-ruby.x86_64 0:2.5-12.el7                     
+  libyaml.x86_64 0:0.1.4-11.el7_0                          pciutils.x86_64 0:3.5.1-3.el7                           
+  puppet.noarch 0:3.6.2-3.el7                              ruby.x86_64 0:2.0.0.648-33.el7_4                        
+  ruby-augeas.x86_64 0:0.5.0-1.el7                         ruby-irb.noarch 0:2.0.0.648-33.el7_4                    
+  ruby-libs.x86_64 0:2.0.0.648-33.el7_4                    ruby-shadow.x86_64 0:1.4.1-23.el7                       
+  rubygem-bigdecimal.x86_64 0:1.2.0-33.el7_4               rubygem-io-console.x86_64 0:0.4.2-33.el7_4              
+  rubygem-json.x86_64 0:1.7.7-33.el7_4                     rubygem-psych.x86_64 0:2.0.0-33.el7_4                   
+  rubygem-rdoc.noarch 0:4.0.0-33.el7_4                     rubygem-rgen.noarch 0:0.6.6-2.el7                       
+  rubygems.noarch 0:2.0.14.1-33.el7_4                     
+Complete!
+[root@artifactory ~]# systemctl restart puppetmaster
+[root@artifactory ~]# systemctl status puppetmaster
+● puppetmaster.service - Puppet master
+   Loaded: loaded (/usr/lib/systemd/system/puppetmaster.service; disabled; vendor preset: disabled)
+   Active: active (running) since Sun 2018-09-30 15:56:45 UTC; 10s ago
+ Main PID: 2140 (start-puppet-ma)
+   CGroup: /system.slice/puppetmaster.service
+           ├─2140 /bin/sh /usr/bin/start-puppet-master master --no-daemonize
+           └─2141 /usr/bin/ruby /usr/bin/puppet master --no-daemonize
+Sep 30 15:56:45 artifactory systemd[1]: Started Puppet master.
+Sep 30 15:56:45 artifactory systemd[1]: Starting Puppet master...
+Sep 30 15:56:47 artifactory puppet-master[2141]: Signed certificate request for ca
+Sep 30 15:56:48 artifactory puppet-master[2141]: artifactory.asia-south1-c.c.evocative-lodge-218006.internal...uest
+Sep 30 15:56:48 artifactory puppet-master[2141]: Signed certificate request for artifactory.asia-south1-c.c....rnal
+Sep 30 15:56:48 artifactory puppet-master[2141]: Removing file Puppet::SSL::CertificateRequest artifactory.a...pem'
+Sep 30 15:56:48 artifactory puppet-master[2141]: Removing file Puppet::SSL::CertificateRequest artifactory.a...pem'
+Sep 30 15:56:48 artifactory puppet-master[2141]: Starting Puppet master version 3.6.2
+Hint: Some lines were ellipsized, use -l to show in full.
+[root@artifactory ~]# systemctl enable puppetmaster
+Created symlink from /etc/systemd/system/multi-user.target.wants/puppetmaster.service to /usr/lib/systemd/system/pu
+ppetmaster.service.
+[root@artifactory ~]# systemctl stop firewalld
+[root@artifactory ~]# systemctl disable firewalld
+[root@artifactory ~]# netstat -tulpn | grep 8140
+tcp        0      0 0.0.0.0:8140            0.0.0.0:*               LISTEN      2141/ruby           
+[root@artifactory ~]# 
+
+[root@artifactory ~]# puppet cert list
+  "puttyclient.asia-south1-c.c.evocative-lodge-218006.internal" (SHA256) 51:70:77:59:D8:80:B5:10:FA:44:78:BC:A5:CE:
+4A:8A:62:CD:2F:5A:5F:16:13:27:E6:55:DD:A2:69:DD:99:BA
+[root@artifactory ~]# puppet cert sign puttyclient.asia-south1-c.c.evocative-lodge-218006.internal
+Notice: Signed certificate request for puttyclient.asia-south1-c.c.evocative-lodge-218006.internal
+Notice: Removing file Puppet::SSL::CertificateRequest puttyclient.asia-south1-c.c.evocative-lodge-218006.internal a
+t '/var/lib/puppet/ssl/ca/requests/puttyclient.asia-south1-c.c.evocative-lodge-218006.internal.pem'
+[root@artifactory ~]# puppet cert list
+[root@artifactory ~]# 
+
+
+[root@artifactory ~]# puppet module generate  puppet-runtest
+We need to create a metadata.json file for this module.  Please answer the
+following questions; if the question is not applicable to this module, feel free
+to leave it blank.
+
+Puppet uses Semantic Versioning (semver.org) to version modules.
+What version is this module?  [0.1.0]
+--> 
+
+Who wrote this module?  [puppet]
+--> 
+
+What license does this module code fall under?  [Apache 2.0]
+--> 
+
+How would you describe this module in a single sentence?
+--> 
+
+Where is this module's source code repository?
+--> 
+
+Where can others go to learn more about this module?
+--> 
+
+Where can others go to file issues about this module?
+--> 
+
+----------------------------------------
+{
+{
+#
+  "name": "puppet-runtest",
+#
+  "version": "0.1.0",
+  "author": "puppet",
+  "summary": null,
+  "license": "Apache 2.0",
+  "source": "",
+  "project_page": null,
+    "issues_url": null,
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_range": ">= 1.0.0"
+    }
+  ]
+}
+----------------------------------------
+About to generate this metadata; continue? [n/Y]
+--> y
+Notice: Generating module at /root/puppet-runtest...
+Notice: Populating ERB templates...
+#
+Finished; module generated in puppet-runtest.
+puppet-runtest/Rakefile
+puppet-runtest/manifests
+puppet-runtest/manifests/init.pp
+puppet-runtest/spec
+puppet-runtest/spec/classes
+puppet-runtest/spec/classes/init_spec.rb
+puppet-runtest/spec/spec_helper.rb
+puppet-runtest/tests
+puppet-runtest/tests/init.pp
+#   it has a default. e.g. "The parameter enc_ntp_servers must be set by the
+puppet-runtest/README.md
+puppet-runtest/metadata.json
+
+
+vim metadata.jason
+
+    {
+      "name": "puppetlabs-stdlib",
+      "version_range": ">= 1.0.0"
+    }
+
+	
+	remove the above lines from the metadata.jason file.
+	
+	
+	vim manifest/init.pp
+
+class runtest {
+
+package { 'httpd':
+  ensure => 'present',
+}
+
+package { 'nfs-utils':
+  ensure => 'present',
+}
+
+service { 'httpd':
+  ensure => 'running',
+  enable => 'true',
+  require => Package['httpd'],
+}
+
+user { 'ram':
+      ensure=>'present',
+      home=>'/home/ram',
+      system => 'true',
+}
+
+file { '/home/ram':
+      ensure=>'directory',
+      owner=>'ram',
+      group=>'ram',
+      require=>User['ram'],
+}
+
+}
+
+
+come to the following directory
+
+[root@aclient1 ~]# ls -ltrh
+total 4.0K
+-rw-------. 1 root root 1.1K Feb 10 00:06 anaconda-ks.cfg
+drwxr-xr-x. 5 root root   96 May 15 13:19 puppet-runtest
+[root@aclient1 ~]# puppet module build puppet-runtest
+Notice: Building /root/puppet-runtest for release
+Module built: /root/puppet-runtest/pkg/puppet-runtest-0.1.0.tar.gz
+[root@aclient1 ~]# pwd
+/root
+
+to check the installed modules
+
+puppet module list
+
+[root@aclient1 ~]# puppet module install puppet-runtest/pkg/puppet-runtest-0.1.0.tar.gz
+Notice: Preparing to install into /etc/puppet/modules ...
+Notice: Downloading from https://forgeapi.puppetlabs.com ...
+Notice: Installing -- do not interrupt ...
+/etc/puppet/modules
+└── puppet-runtest (v0.1.0)
+
+
+
+
+[root@aclient1 ~]# cat /etc/puppet/manifests/site.pp
+node aclient2 {
+  include runtest
+}
+
+[root@artifactory ~]# puppet module uninstall puppet-runtest
+Notice: Preparing to uninstall 'puppet-runtest' ...
+Error: Could not uninstall module 'puppet-runtest' (v0.1.0)
+  Installed module has had changes made locally
+    Use `puppet module uninstall --force` to uninstall this module anyway
+[root@artifactory ~]# puppet module uninstall puppet-runtest --force
+Notice: Preparing to uninstall 'puppet-runtest' ...
+Removed 'puppet-runtest' (v0.1.0) from /etc/puppet/modules
+[root@artifactory ~]# puppet module install puppet-runtest/pkg/puppet-runtest-0.1.0.tar.gz
+Notice: Preparing to install into /etc/puppet/modules ...
+Notice: Downloading from https://forgeapi.puppetlabs.com ...
+Notice: Installing -- do not interrupt ...
+/etc/puppet/modules
+└── puppet-runtest (v0.1.0)
+[root@artifactory ~]# 
